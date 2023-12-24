@@ -1,0 +1,219 @@
+```tmux title=tmux.conf
+# REF: http://deanbodenham.com/learn/tmux-conf-file.html
+
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+# General settings ⬇️ ⬇️ ⬇️
+#-------------------------------------------------------#
+
+
+#set mouse off/on - if off, forces you to use keyboard with prefix-[
+set -g mouse on
+ 
+# start with window 1 (instead of 0)
+set -g base-index 1
+ 
+# start with pane 1
+set -g pane-base-index 1
+ 
+# allow utf8 support
+set -q -g status-utf8 on     # expect UTF-8 (tmux < 2.2)
+setw -q -g utf8 on
+
+# Or for tmux >= 2.6
+set -sg escape-time 10
+
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+# PANE AND WINDOW NAVIGATION/MANAGEMENT ⬇️ ⬇️ ⬇️
+#-------------------------------------------------------#
+
+# splitting panes
+# use vim-like keys for splits and windows
+bind \\ split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+bind-key -n 'C-e' display-popup -E "bash -c /Users/lintao/dotfiles/local-bin-scripts/.local/bin/tmux-window-switcher.sh"
+
+
+set-option repeat-time 2000
+
+# pane resizing
+bind -r H resize-pane -L 3
+bind -r J resize-pane -D 3
+bind -r K resize-pane -U 3
+bind -r L resize-pane -R 3
+
+# next/prev window by `h/l`
+bind -r h prev
+bind -r l next
+
+# default pane layouts
+bind + select-layout main-horizontal
+bind = select-layout main-vertical
+
+# Rotate panes
+bind -r o rotate-window
+
+# ====================== My configs
+
+# set history
+set -g history-limit 10000                 # boost history
+
+
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+# Copy/Paste Vim mode ⬇️ ⬇️ ⬇️
+#-------------------------------------------------------#
+
+# Enable native Mac OS X copy/paste
+set-option -g default-command "/bin/bash -c 'which reattach-to-user-namespace >/dev/null && exec reattach-to-user-namespace $SHELL -l || exec $SHELL -l'"
+
+# use vi mode
+setw -g mode-keys vi
+set -g status-keys vi
+
+# bind
+bind [ copy-mode
+
+# Setup 'v' to begin selection as in Vim
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -T copy-mode-vi Enter
+bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+# Shortcuts ⬇️ ⬇️ ⬇️
+#-------------------------------------------------------#
+
+bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"  
+
+bind d send-keys -R C-l \; clear-history
+
+# Toggle popup window with Alt-3
+bind-key -n -N 'Toggle popup window' M-3 if-shell -F '#{==:#{session_name},popup}' {
+    detach-client
+} {
+    display-popup -d "#{pane_current_path}" -xC -yC -w 100% -h 100% -E 'tmux attach-session -t popup || tmux new-session -s popup'
+}
+
+
+# bind-key -n "M-8" run-shell -b "~/.tmux/plugins/tmux-fzf/scripts/pane.sh switch"
+
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+# NVim Requirement ⬇️ ⬇️ ⬇️
+#-------------------------------------------------------#
+set-option -g focus-events on
+
+########################## 🔽 TPM 🔽 ###########################
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+set -g @plugin 'sainnhe/tmux-fzf'
+TMUX_FZF_OPTIONS="-p -w 80% -h 76% -m"
+TMUX_FZF_LAUNCH_KEY="f"
+lMUX_FZF_ORDER="session|pane|command|keybinding|window"
+TMUX_FZF_PANE_FORMAT="#{p15:#{b:pane_current_path}} :: #{pane_current_command}"
+# press <prefix-I> after add/delete plugin
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+########################## 🔼 TPM 🔼 ##########################
+
+#-------------------------------------------------------#
+#-------------------------------------------------------#
+# Styles ⬇️ ⬇️ ⬇️
+#-------------------------------------------------------#
+
+#256 colours
+set -g default-terminal "screen-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+# Segguested by neovim healthcheck
+set-option -sa terminal-overrides ',screen-256color:RGB'
+set-option -sa terminal-overrides ',XXX:RGB'
+
+# set inactive/active window(pane) styles 
+set-window-option -t popup window-active-style "fg=colour250,bg=#332B28"
+
+set -g window-style 'fg=#7E7E7E,bg=#4B4B4B'
+set -g window-active-style 'fg=colour250,bg=black'
+set -g status-interval 1
+set -g window-status-format '#I:#(pwd="#{pane_current_path}"; echo ${pwd####*/})#F'
+set -g window-status-current-format '#I:#(pwd="#{pane_current_path}"; echo ${pwd####*/})#F'
+
+
+########################## 🔽 GRUVBOX DARK 🔽 ###########################
+set-option -g status-interval 3
+set-option -g automatic-rename on
+set-option -g automatic-rename-format '#{b:pane_current_path} :: #{b:pane_current_command}'
+
+## COLORSCHEME: gruvbox dark (medium)
+set-option -g status "on"
+
+# default statusbar color
+set-option -g status-style bg=colour237,fg=colour223 # bg=bg1, fg=fg1
+
+# default window title colors
+set-window-option -g window-status-style bg=colour214,fg=colour237 # bg=yellow, fg=bg1
+
+# default window with an activity alert
+set-window-option -g window-status-activity-style bg=colour237,fg=colour248 # bg=bg1, fg=fg3
+
+# active window title colors
+set-window-option -g window-status-current-style bg=red,fg=colour237 # fg=bg1
+
+# pane border
+set -g pane-active-border-style "bg=default fg=cyan"
+set -g pane-border-style "fg=#7E7E7E"
+set -g pane-border-lines heavy
+
+# message infos
+set-option -g message-style bg=colour239,fg=colour223 # bg=bg2, fg=fg1
+
+# writing commands inactive
+set-option -g message-command-style bg=colour239,fg=colour223 # bg=fg3, fg=bg1
+
+# pane number display
+set-option -g display-panes-active-colour colour250 #fg2
+set-option -g display-panes-colour colour237 #bg1
+
+# clock
+set-window-option -g clock-mode-colour colour109 #blue
+
+# bell
+set-window-option -g window-status-bell-style bg=colour167,fg=colour235 # bg=red, fg=bg
+
+## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
+set-option -g status-justify "left"
+set-option -g status-left-style none
+set-option -g status-left-length "80"
+set-option -g status-right-style none
+set-option -g status-right-length "80"
+set-window-option -g window-status-separator ""
+
+set-option -g status-left "#[bg=colour241,fg=colour248] #S #[bg=colour237,fg=colour241,nobold,noitalics,nounderscore]"
+set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] "
+
+set-window-option -g window-status-current-format "#[bg=colour214,fg=colour237,nobold,noitalics,nounderscore]#[bg=colour214,fg=colour239] #I #[bg=colour214,fg=colour239,bold] #{b:pane_current_path}#{?window_zoomed_flag,*Z,} :: #{pane_current_command} #[bg=colour237,fg=colour214,nobold,noitalics,nounderscore]"
+set-window-option -g window-status-format "#[bg=colour239,fg=colour237,noitalics]#[bg=colour239,fg=colour223] #I #[bg=colour239,fg=colour223] #{b:pane_current_path} #[bg=colour237,fg=colour239,noitalics]"
+########################## 🔼 GRUVBOX DARK 🔼 ##########################
+```

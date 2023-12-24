@@ -1,0 +1,50 @@
+# Fireship Nodejs Guide
+
+## fs
+
+import CodeBlock from '@theme/CodeBlock';
+import Filesystemsyncblocking from '!!raw-loader!./filesystem-sync-blocking.js';
+import Filesystemasyncnonblocking from '!!raw-loader!./filesystem-async-non-blocking.js';
+import FilesystemPromise from '!!raw-loader!./filesystem-promise-ns.js';
+
+### Sync | Blocking
+<CodeBlock language="js" title="./filesystem-sync-blocking.js">{Filesystemsyncblocking}</CodeBlock>
+
+```bash title="outcome"
+❯ node filesystem-sync-blocking.js
+Hello from file system
+
+do this ASAP
+```
+
+### Async | Non-Blocking
+
+<CodeBlock language="js" title="./filesystem-async-non-blocking.js">{Filesystemasyncnonblocking}</CodeBlock>
+
+```bash title="outcome"
+❯ node filesystem-async-non-blocking.js
+do this ASAP
+Hello from file system
+```
+
+### Promise | Non-Blocking
+
+
+<CodeBlock language="js" title="./filesystem-promise-ns.js">{FilesystemPromise}</CodeBlock>
+
+```bash title="outcome"
+❯ node filesystem-promise-ns.js
+do this ASAP
+Hello from fs
+```
+
+## Modules
+
+- COMMON JS: `requrie()`
+- ES MODULES: `import/export`
+
+- npm
+  - npm init -y
+  - package.json
+  - node_modules
+

@@ -1,0 +1,31 @@
+---
+tags: [js, async]
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import HelloAwait from '!!raw-loader!./hello-await.js';
+import Hello from '!!raw-loader!./hello.js';
+import HelloAwaitError from '!!raw-loader!./hello-await-error-handling.js';
+import HelloFetch from '!!raw-loader!./hello-await-fetch.js';
+
+# Async and await
+> REF: https://www.youtube.com/watch?v=zoZiQJ38bXk
+
+## Normal Promise
+
+<CodeBlock language="js" title="./hello.js">{Hello}</CodeBlock>
+
+## Change to Await
+
+<CodeBlock language="js" title="./hello-await.js">{HelloAwait}</CodeBlock>
+
+## Error handling
+
+<CodeBlock language="js" title="./hello-await-error-handling.js">{HelloAwaitError}</CodeBlock>
+
+## With Fetch
+<CodeBlock language="js" title="./hello-await-fetch.js">{HelloFetch}</CodeBlock>
+
+## Promise.all and typescript
+
+> REF: https://blog.logrocket.com/async-await-in-typescript/
