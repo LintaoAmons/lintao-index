@@ -13,11 +13,11 @@ sidebar_position: 1
   - [Ansible](./DevOps/Ansible/index.md)
   - [K8s](./DevOps/K8s/index.md)
 - Coding
+  - [Java](./Coding/Java/index.md)
+  - [Javascript & Typescript](./Coding/js-ts/index.md)
+  - [python](./Coding/python/index.md)
   - [重构](/docs/category/refactor)
   - [config-files](/docs/category/config-files)
-  - [Java](./Coding/Java/index.md)
-  - [python](./Coding/python/index.md)
-  - [Javascript & Typescript](./Coding/js-ts/index.md)
 - Editors & Tools
   - [HammerSpoon](./Terminal/HammerSpoon/intro.md)
   - [Warpd](./Editor-and-Tools/warpd.md)
