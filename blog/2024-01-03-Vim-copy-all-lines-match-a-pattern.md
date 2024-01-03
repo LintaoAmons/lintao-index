@@ -21,4 +21,4 @@
 
    这将把寄存器 `A` 的内容粘贴到当前光标位置。
 
-记住，Vim 的模式匹配使用正则表达式，所以你可以使用正则表达式进行更复杂的匹配。同时，要注意大小写敏感性和 Vim 特有的正则表达式功能。
+> 查看更多 Vim Regex 批处理用法: https://lintao-index.pages.dev/docs/Vim/vim-regex
