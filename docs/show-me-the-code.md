@@ -47,7 +47,3 @@ Java version implementation of UnderControl. Spike and Toy project.
 [Next](https://nextjs.org/) version frontend for undercontrol-server. Spike and Toy porject.
 
 - [openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen): typed api client generator
-
-
-
-![My Skills](https://skillicons.dev/icons?i=java,kotlin,spring,vim,kubernetes,docker,aws,bash,python,lua,go,js,ts,react,html,css,jenkins,postgres,mysql,mongodb)
