@@ -18,28 +18,12 @@ UnderControl is a completely offline financial management tool designed for pers
 - Others
   - DDD: Domain driven design
   - TUI: Terminal UI
-
-## UnderControlJavaServer
-
-> https://github.com/LintaoAmons/UnderControlJavaServer
-
-Java version implementation of UnderControl. Spike and Toy project.
-
-**Tech Stack**: ![TechStack](https://skillicons.dev/icons?i=kotlin,java,maven,postgres,jenkins,docker,mongodb)
-
-## UnderControlNextClient
-
-> https://github.com/LintaoAmons/UnderControlNextClient
-
-[Next](https://nextjs.org/) version frontend for undercontrol-server. Spike and Toy porject.
-
-- **Tech Stack**: ![TechStack](https://skillicons.dev/icons?i=typescript,react,tailwindcss)
-- Others
-  - [openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen): typed api client generator
-
+ 
 ## Keyboard
-
+> ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Keyboard?style=social)
+> 
 > Source code: https://github.com/LintaoAmons/Keyboard
+> 
 > Play with it: https://keyboard-7p1.pages.dev/
 
 Small toy to show the shortcuts configuration and share with others
@@ -62,3 +46,23 @@ Create temporary playground files effortlessly. Find them later without worrying
 A collection of intuitive, easily searchable, and ready-to-use commands.
 
 **Tech Stack**: ![Lua](https://skillicons.dev/icons?i=lua)
+
+
+## UnderControlJavaServer
+
+> https://github.com/LintaoAmons/UnderControlJavaServer
+
+Java version implementation of UnderControl. Spike and Toy project.
+
+**Tech Stack**: ![TechStack](https://skillicons.dev/icons?i=kotlin,java,maven,postgres,jenkins,docker,mongodb)
+
+## UnderControlNextClient
+
+> https://github.com/LintaoAmons/UnderControlNextClient
+
+[Next](https://nextjs.org/) version frontend for undercontrol-server. Spike and Toy porject.
+
+- **Tech Stack**: ![TechStack](https://skillicons.dev/icons?i=typescript,react,tailwindcss)
+- Others
+  - [openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen): typed api client generator
+
