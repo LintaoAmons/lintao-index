@@ -19,9 +19,7 @@ UnderControl is a completely offline financial management tool designed for pers
   - DDD: Domain driven design
   - TUI: Terminal UI
  
-## [Keyboard](https://github.com/LintaoAmons/Keyboard)
-> ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Keyboard?style=social)
-> 
+## [Keyboard](https://github.com/LintaoAmons/Keyboard) ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Keyboard?style=social)
 > Play with it: https://keyboard-7p1.pages.dev/
 
 Small toy to show the shortcuts configuration and share with others
