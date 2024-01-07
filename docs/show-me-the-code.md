@@ -8,9 +8,7 @@ slug: "show-me-the-code"
 
 ![My Skills](https://skillicons.dev/icons?i=java,kotlin,spring,vim,kubernetes,docker,aws,bash,python,lua,go,js,ts,react,html,css,jenkins,postgres,mysql,mongodb)
 
-## Undercontrol-go
-
-> https://github.com/LintaoAmons/undercontrol-go
+## [Undercontrol-go](https://github.com/LintaoAmons/undercontrol-go)
 
 UnderControl is a completely offline financial management tool designed for personal use written in golang. All your data is stored offline and remains on your own device.
 
@@ -27,19 +25,14 @@ Small toy to show the shortcuts configuration and share with others
 - **Tech Stack**: ![TechStack](https://skillicons.dev/icons?i=typescript,react)
 
 
-## Scratch.nvim
-> ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Scratch.nvim?style=social)
-> 
-> https://github.com/LintaoAmons/scratch.nvim
+## [Scratch.nvim](https://github.com/LintaoAmons/scratch.nvim) ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Scratch.nvim?style=social)
+
 
 Create temporary playground files effortlessly. Find them later without worrying about filenames or locations.
 
 **Tech Stack**: ![Lua](https://skillicons.dev/icons?i=lua)
 
-## Easy-command
-> ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/easy-commands.nvim?style=social)
->
-> https://github.com/LintaoAmons/easy-commands.nvim
+## [Easy-command](https://github.com/LintaoAmons/easy-commands.nvim) ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/easy-commands.nvim?style=social)
 
 A collection of intuitive, easily searchable, and ready-to-use commands.
 
