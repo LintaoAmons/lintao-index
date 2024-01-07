@@ -19,10 +19,8 @@ UnderControl is a completely offline financial management tool designed for pers
   - DDD: Domain driven design
   - TUI: Terminal UI
  
-## Keyboard
+## [Keyboard](https://github.com/LintaoAmons/Keyboard)
 > ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Keyboard?style=social)
-> 
-> Source code: https://github.com/LintaoAmons/Keyboard
 > 
 > Play with it: https://keyboard-7p1.pages.dev/
 
@@ -32,7 +30,8 @@ Small toy to show the shortcuts configuration and share with others
 
 
 ## Scratch.nvim
-
+> ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/Scratch.nvim?style=social)
+> 
 > https://github.com/LintaoAmons/scratch.nvim
 
 Create temporary playground files effortlessly. Find them later without worrying about filenames or locations.
@@ -40,7 +39,8 @@ Create temporary playground files effortlessly. Find them later without worrying
 **Tech Stack**: ![Lua](https://skillicons.dev/icons?i=lua)
 
 ## Easy-command
-
+> ![GitHub Repo stars](https://img.shields.io/github/stars/LintaoAmons/easy-commands.nvim?style=social)
+>
 > https://github.com/LintaoAmons/easy-commands.nvim
 
 A collection of intuitive, easily searchable, and ready-to-use commands.
