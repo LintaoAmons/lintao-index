@@ -6,8 +6,6 @@ slug: "show-me-the-code"
 
 # Show me the code
 
-![My Skills](https://skillicons.dev/icons?i=java,kotlin,spring,vim,kubernetes,docker,aws,bash,python,lua,go,js,ts,react,html,css,jenkins,postgres,mysql,mongodb)
-
 ## [Undercontrol-go](https://github.com/LintaoAmons/undercontrol-go)
 > ![TechStack](https://skillicons.dev/icons?i=go,sqlite,docker)
 
@@ -50,3 +48,6 @@ Java version implementation of UnderControl. Spike and Toy project.
 
 - [openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen): typed api client generator
 
+
+
+![My Skills](https://skillicons.dev/icons?i=java,kotlin,spring,vim,kubernetes,docker,aws,bash,python,lua,go,js,ts,react,html,css,jenkins,postgres,mysql,mongodb)
