@@ -151,6 +151,16 @@ const config = {
               },
             ],
           },
+
+          {
+            title: "Link exchange",
+            items: [
+              {
+                label: "Mutoe's blog",
+                href: "https://blog.mutoe.com/",
+              },
+            ],
+          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Lintao. Built with Docusaurus.`,
       },
