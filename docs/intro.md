@@ -14,7 +14,7 @@ I'm pretty handy with tools like Vim, Tmux, IDEA, and VSCode for coding, and I'm
 
 I've got a lot of experience with search and copy-and-paste skills, with ChatGPT, I can call myself full stack.
 
-## TOC
+## 👻 TOC
 
 - [Blog](https://lintao-index.pages.dev/blog)
 - [Vim](./Vim/index.md)
