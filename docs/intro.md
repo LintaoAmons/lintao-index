@@ -27,7 +27,7 @@ I've got a lot of experience with search and copy-and-paste skills, with ChatGPT
   - [Java](./Coding/Java/index.md)
   - [Javascript & Typescript](./Coding/js-ts/index.md)
   - [python](./Coding/python/index.md)
-  - [重构](/docs/category/refactor)
+  - [Refactor](/docs/category/refactor)
   - [config-files](/docs/category/config-files)
 - Editors & Tools
   - [HammerSpoon](./Terminal/HammerSpoon/intro.md)
