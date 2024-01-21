@@ -20,7 +20,7 @@ I've got a lot of experience with search and copy-and-paste skills, with ChatGPT
 - [Blog](https://lintao-index.pages.dev/blog)
 - [Vim](./Vim/index.md)
 - [Show me the code](./show-me-the-code.md)
-- [Good Article Sharing](./good-content-share.md)
+- [Good content sharing](./good-content-share.md)
 - DevOps
   - [Ansible](./DevOps/Ansible/index.md)
   - [K8s](./DevOps/K8s/index.md)
