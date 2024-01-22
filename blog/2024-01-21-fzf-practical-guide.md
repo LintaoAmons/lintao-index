@@ -83,7 +83,7 @@ fzf -h | fzf
 #### 大小写敏感
 
 ```sh
-uat CommandUsecase.md | fzf +i
+cat CommandUsecase.md | fzf +i
 ```
 
 #### 严格匹配
