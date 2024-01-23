@@ -1,7 +1,7 @@
 # Mockk mock examples
 
 You can find the runnable code at this [github repo](https://github.com/LintaoAmons/kotlin-mockk-demo/tree/main/app/src/test/kotlin/top/oatnil/kotlinmockk)
-
+You can find the video tutorial at [bilibili](https://www.bilibili.com/video/BV17V411972b)
 
 ## Mock Static Method
 
