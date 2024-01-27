@@ -2,8 +2,6 @@
 sidebar_position: 1
 ---
 
-# Notes
-
 ## 👋 Hi
 
 I am **Lintao**, currently working as a backend developer at Thoughtwork/Singapore.
@@ -42,6 +40,8 @@ Email: [lintao.amons@gmail.com](mailto:lintao.amons@gmail.com).
 Github: https://github.com/LintaoAmons
 
 Linkedin: https://www.linkedin.com/in/lintaozhang
+
+X(Twitter): https://twitter.com/Lintao000
 
 [![Lintao's GitHub stats](https://github-readme-stats.vercel.app/api?username=LintaoAmons)](https://github.com/LintaoAmons/github-readme-stats)
 

@@ -10,9 +10,10 @@ tags: [vim]
 
 ## 目录
 
-- 我写的插件
+- My plugins
   - [scratch.nvim](https://github.com/LintaoAmons/scratch.nvim)
   - [easy-commands.nvim](https://github.com/LintaoAmons/easy-commands.nvim)
+  - [cd-project](https://github.com/LintaoAmons/cd-project.nvim)
   - [print-config.nvim](https://github.com/LintaoAmons/print-config.nvim)
 - 基础
   - [Vim 正则](./vim-regex.md)

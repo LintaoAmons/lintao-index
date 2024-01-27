@@ -143,7 +143,11 @@ const config = {
               },
               {
                 label: "Linkedin",
-                href: "https://www.linkedin.com/in/lintao-zhang-1527a8268/",
+                href: "https://www.linkedin.com/in/lintaozhang",
+              },
+              {
+                label: "X(Twitter)",
+                href: "https://twitter.com/Lintao000",
               },
             ],
           },
