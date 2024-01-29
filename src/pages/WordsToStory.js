@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column; /* Start with a vertical layout on mobile */
   justify-content: flex-start;
-  height: 100vh;
+  width: 100vw;
   font-size: 20px;
 
   /* Media query for tablets and larger screens */
@@ -20,6 +20,7 @@ const Container = styled.div`
 export default function WordsToStory() {
   const [token, setToken] = useState("");
   const [openaiApiKey, setOpenaiApiKey] = useState("");
+  // words allow user input random words
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -46,6 +47,8 @@ export default function WordsToStory() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const data = (await response.json()).data;
 
       const words = data.map((it) => it.word);
 
@@ -96,10 +99,8 @@ export default function WordsToStory() {
   };
 
   const getWords = async (token) => {
-    console.log(token);
     if (token && token !== "") {
-      const data = await fetchWords();
-      return data.map((it) => it.word);
+      return await fetchWords();
     }
     return ["today", "I", "Good", "Feel"];
   };
@@ -225,9 +226,9 @@ export default function WordsToStory() {
         <div
           className="content"
           style={{
-            // backgroundColor: "blue",
-            flexBasis: "75vw",
+            flexGrowZ: 1,
             margin: "5px",
+            overflowY: "scroll",
           }}
         >
           {loading ? (
