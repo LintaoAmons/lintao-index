@@ -17,16 +17,24 @@ const Container = styled.div`
   }
 `;
 
-export default function Hello() {
+export default function WordsToStory() {
   const [token, setToken] = useState("");
   const [openaiApiKey, setOpenaiApiKey] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+      [array[i], array[j]] = [array[j], array[i]]; // swap elements
+    }
+    return array;
+  }
+
   const fetchWords = async () => {
     try {
       const response = await fetch(
-        "https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=0&page_size=10",
+        "https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=0&page_size=50",
         {
           method: "GET", // The method is optional since GET is the default value
           headers: {
@@ -39,34 +47,22 @@ export default function Hello() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return (await response.json()).data;
+      const words = data.map((it) => it.word);
+
+      // Shuffle the array of words
+      const shuffledWords = shuffleArray(words);
+
+      // Pick the first ten words
+      const firstTenWords = shuffledWords.slice(0, 10);
+
+      return firstTenWords;
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
   };
 
-  const generateArticle = async (words) => {
+  const generateArticleByOpenAi = async (prompt) => {
     try {
-      const prompt = `"Please create a story of approximately 100 words, ensuring it includes the following English words: ${words}. Each word must be highlighted in **bold** within the story. Additionally, provide the Chinese translations for these words, alongside a brief explanation of their meanings. Structure your response in the markdown format provided below:
-\`\`\`
-## Story
-
-[Insert the story here, with all specified words in **bold**.]
-
-## Chinese Translation
-
-[Provide the Chinese translation of the story here.]
-
-## Words
-
-- [word1]: [Chinese explanation]
-
-- [word2]: [Chinese explanation]
-
-[Continue with the rest of the words...]
-\`\`\`
-`;
-
       const response = await fetch(
         "https://gateway.ai.cloudflare.com/v1/e89e6bf826104a79b5acc93775ae08f3/openai-gateway/openai/chat/completions",
         {
@@ -99,12 +95,73 @@ export default function Hello() {
     }
   };
 
+  const getWords = async (token) => {
+    console.log(token);
+    if (token && token !== "") {
+      const data = await fetchWords();
+      return data.map((it) => it.word);
+    }
+    return ["today", "I", "Good", "Feel"];
+  };
+
+  const generateArticleByCFWorder = async (prompt) => {
+    try {
+      const response = await fetch(
+        "https://gateway.ai.cloudflare.com/v1/e89e6bf826104a79b5acc93775ae08f3/openai-gateway/workers-ai/@cf/meta/llama-2-7b-chat-int8",
+        {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer bmWjLQmAUCOkfPV9UCBRKA45zENcOS_5qDy6q8Wn",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: prompt,
+          }),
+        },
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const responseJson = await response.json();
+      return responseJson.result.response;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  // Usage
   const handleClick = async () => {
     try {
       setLoading(true);
-      const data = await fetchWords();
-      const words = data.map((it) => it.word);
-      const article = await generateArticle(words);
+      const words = await getWords(token);
+      console.log(words);
+
+      const prompt = `"Please create a story of approximately 100 words, ensuring it includes the following English words: ${words}. Each word must be highlighted in **bold** within the story. Additionally, provide the Chinese translations for these words, alongside a brief explanation of their meanings. Structure your response in the markdown format provided below:
+\`\`\`
+## Story
+
+[Insert the story here, with all specified words in **bold**.]
+
+## Chinese Translation
+
+[Provide the Chinese translation of the story here.]
+
+## Words
+
+- [word1]: [Chinese explanation]
+
+- [word2]: [Chinese explanation]
+
+[Continue with the rest of the words...]
+\`\`\`
+`;
+
+      var article;
+      if (openaiApiKey != "") {
+        article = await generateArticleByOpenAi(prompt);
+      } else {
+        article = await generateArticleByCFWorder(prompt);
+      }
 
       setContent(article);
       setLoading(false);
