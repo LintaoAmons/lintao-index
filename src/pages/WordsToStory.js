@@ -1,6 +1,21 @@
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import Markdown from "react-markdown";
+import styled from "styled-components";
+
+const Container = styled.div`
+  /* Default styles for mobile */
+  display: flex;
+  flex-direction: column; /* Start with a vertical layout on mobile */
+  justify-content: flex-start;
+  height: 100vh;
+  font-size: 20px;
+
+  /* Media query for tablets and larger screens */
+  @media (min-width: 768px) {
+    flex-direction: row; /* Switch to horizontal layout on larger screens */
+  }
+`;
 
 export default function Hello() {
   const [token, setToken] = useState("");
@@ -104,15 +119,7 @@ export default function Hello() {
       title="Words to story"
       description="Help you to get familiar with your words by stories"
     >
-      <div
-        className="container"
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          height: "100vh",
-          fontSize: "20px",
-        }}
-      >
+      <Container>
         <div
           className="sidebar"
           style={{
@@ -172,7 +179,7 @@ export default function Hello() {
             <Markdown>{content}</Markdown>
           )}
         </div>
-      </div>
+      </Container>
     </Layout>
   );
 }
