@@ -259,7 +259,7 @@ export default function WordsToStory() {
                 display: "block",
               }}
             >
-              欧陆词典 Token{" "}
+              欧陆词典 Token (<a href="https://my.eudic.net/OpenAPI/Authorization" >获取TOKEN</a>)
             </label>
             <p
               style={{
@@ -267,7 +267,7 @@ export default function WordsToStory() {
                 margin: 0,
               }}
             >
-              (从你的欧陆生词本获取单词, 可以不填)
+              (从你的欧陆生词本获取单词, 可以不填。欧陆词典是一款非常好用的工具，内置生词本，其“每日英语听力”也非常好用，并且可以很方便添加单词到生词本)
             </p>
             <input
               type="text"
