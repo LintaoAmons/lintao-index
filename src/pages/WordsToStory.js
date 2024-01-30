@@ -134,6 +134,38 @@ export default function WordsToStory() {
     }
   };
 
+  const generateArticleByGemini = async (prompt) => {
+    try {
+      const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyDmAtUsQGf2tzBFIOhvXKccgFuDKd60yU8",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: prompt,
+                  },
+                ],
+              },
+            ],
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const responseJson = await response.json();
+      return responseJson.candidates[0].content.parts[0].text;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
   // Usage
   const handleClick = async () => {
     try {
@@ -165,7 +197,7 @@ export default function WordsToStory() {
       if (openaiApiKey != "") {
         article = await generateArticleByOpenAi(prompt);
       } else {
-        article = await generateArticleByCFWorder(prompt);
+        article = await generateArticleByGemini(prompt);
       }
 
       setContent(article);
