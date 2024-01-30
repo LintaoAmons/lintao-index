@@ -136,26 +136,16 @@ export default function WordsToStory() {
 
   const generateArticleByGemini = async (prompt) => {
     try {
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyDmAtUsQGf2tzBFIOhvXKccgFuDKd60yU8",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: prompt,
-                  },
-                ],
-              },
-            ],
-          }),
+      const response = await fetch("https://gemini.lintao-amons.workers.dev/", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer bmWjLQmAUCOkfPV9UCBRKA45zENcOS_5qDy6q8Wn",
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          prompt: prompt,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -240,7 +230,8 @@ export default function WordsToStory() {
                 margin: 0,
               }}
             >
-              (用 CHATGPT 获得更好地文章效果，如果不填，将使用免费的 Google Gemini)
+              (用 CHATGPT 获得更好地文章效果，如果不填，将使用免费的 Google
+              Gemini)
             </p>
             <input
               type="text"
@@ -259,7 +250,9 @@ export default function WordsToStory() {
                 display: "block",
               }}
             >
-              欧陆词典 Token (<a href="https://my.eudic.net/OpenAPI/Authorization" >获取TOKEN</a>)
+              欧陆词典 Token (
+              <a href="https://my.eudic.net/OpenAPI/Authorization">获取TOKEN</a>
+              )
             </label>
             <p
               style={{
@@ -267,7 +260,8 @@ export default function WordsToStory() {
                 margin: 0,
               }}
             >
-              (从你的欧陆生词本获取单词, 可以不填。欧陆词典是一款非常好用的工具，内置生词本，其“每日英语听力”也非常好用，并且可以很方便添加单词到生词本)
+              (从你的欧陆生词本获取单词,
+              可以不填。欧陆词典是一款非常好用的工具，内置生词本，其“每日英语听力”也非常好用，并且可以很方便添加单词到生词本)
             </p>
             <input
               type="text"
