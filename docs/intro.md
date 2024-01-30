@@ -2,16 +2,6 @@
 sidebar_position: 1
 ---
 
-## 👋 Hi
-
-I am **Lintao**, currently working as a backend developer at Thoughtwork/Singapore.
-
-I'm a backend engineer with three years of experience, you can find some info about my [previous project experiences](./project-experiences.md) here.
-
-I'm pretty handy with tools like Vim, Tmux, IDEA, and VSCode for coding, and I'm a fast coder with KISS principle(And Clean Code) in mind.
-
-I've got a lot of experience with search and copy-and-paste skills, with ChatGPT, I can call myself full stack.
-
 ## 👻 TOC
 > 👷UNDER CONSTRUCTION
 
@@ -19,6 +9,7 @@ I've got a lot of experience with search and copy-and-paste skills, with ChatGPT
 - [Vim](./Vim/index.md)
 - [Show me the code](./show-me-the-code.md)
 - [Good content sharing](./good-content-share.md)
+- [Words to story](https://lintao-index.pages.dev/wordsToStory)
 - DevOps
   - [Ansible](./DevOps/Ansible/index.md)
   - [K8s](./DevOps/K8s/index.md)

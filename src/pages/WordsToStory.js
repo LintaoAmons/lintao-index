@@ -20,9 +20,9 @@ const Container = styled.div`
 export default function WordsToStory() {
   const [token, setToken] = useState("");
   const [openaiApiKey, setOpenaiApiKey] = useState("");
-  // words allow user input random words
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [words, setWords] = useState("");
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -99,16 +99,19 @@ export default function WordsToStory() {
   };
 
   const getWords = async (token) => {
+    if (words && words !== "") {
+      return words;
+    }
     if (token && token !== "") {
       return await fetchWords();
     }
-    return ["today", "I", "Good", "Feel"];
+    return ["You", "didn't", "provide", "any", "words"];
   };
 
   const generateArticleByCFWorder = async (prompt) => {
     try {
       const response = await fetch(
-        "https://gateway.ai.cloudflare.com/v1/e89e6bf826104a79b5acc93775ae08f3/openai-gateway/workers-ai/@cf/meta/llama-2-7b-chat-int8",
+        "https://llm-app-tight-mode-0227.lintao-amons.workers.dev/",
         {
           method: "POST",
           headers: {
@@ -120,11 +123,12 @@ export default function WordsToStory() {
           }),
         },
       );
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const responseJson = await response.json();
-      return responseJson.result.response;
+      return responseJson[0].response.response;
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -137,15 +141,15 @@ export default function WordsToStory() {
       const words = await getWords(token);
       console.log(words);
 
-      const prompt = `"Please create a story of approximately 100 words, ensuring it includes the following English words: ${words}. Each word must be highlighted in **bold** within the story. Additionally, provide the Chinese translations for these words, alongside a brief explanation of their meanings. Structure your response in the markdown format provided below:
+      const prompt = `"Please create a story of approximately 100 words, ensuring it includes the following English words: ${words}. Each word must be highlighted in **bold** within the story. Additionally, provide the Chinese translations for these words, alongside a brief explanation of their meanings. Structure your response in the markdown format provided below(response the markdown only, don't add other explanation):
 \`\`\`
 ## Story
 
-[Insert the story here, with all specified words in **bold**.]
+[Insert the English version story here, with all specified words in **bold**.]
 
 ## Chinese Translation
 
-[Provide the Chinese translation of the story here.]
+[Provide the Chinese translation of the story here, with all specified words in **bold**.]
 
 ## Words
 
@@ -153,7 +157,7 @@ export default function WordsToStory() {
 
 - [word2]: [Chinese explanation]
 
-[Continue with the rest of the words...]
+[Continue with the rest of the words until all of the words are shown here...]
 \`\`\`
 `;
 
@@ -184,45 +188,100 @@ export default function WordsToStory() {
             display: "flex",
             flexDirection: "column",
             flexBasis: "25vw",
-            // backgroundColor: "red",
           }}
         >
-          <label
+          <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: "flex-col",
             }}
           >
-            OPENAI_API_KEY:
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+              OPENAI_API_KEY
+            </label>
+            <p
+              style={{
+                fontSize: "x-small",
+                margin: 0,
+              }}
+            >
+              (用CHATGPT获得更好地文章效果，可以不填)
+            </p>
             <input
               type="text"
               value={openaiApiKey}
               onChange={(e) => setOpenaiApiKey(e.target.value)}
             />
-          </label>
-          <label
+          </div>
+
+          <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: "flex-col",
             }}
           >
-            EUDIT TOKEN:
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+              欧陆词典 Token{" "}
+            </label>
+            <p
+              style={{
+                fontSize: "x-small",
+                margin: 0,
+              }}
+            >
+              (从你的欧陆生词本获取单词, 可以不填)
+            </p>
             <input
               type="text"
               value={token}
               onChange={(e) => setToken(e.target.value)}
-            />{" "}
-          </label>
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex-col",
+            }}
+          >
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+              手动输入你的单词
+            </label>
+            <p
+              style={{
+                fontSize: "x-small",
+                margin: 0,
+              }}
+            >
+              (你可以直接在这指定你想要的单词，输入后，将不再从欧陆词典拉取单词，可以不填)
+            </p>
+            <input
+              type="text"
+              value={words}
+              onChange={(e) => setWords(e.target.value)}
+            />
+          </div>
 
           <button
             style={{
               marginTop: "8px",
+              fontSize: "large",
             }}
             onClick={handleClick}
           >
-            Call API
+            点这里！生成故事
           </button>
         </div>
+
         <div
           className="content"
           style={{
