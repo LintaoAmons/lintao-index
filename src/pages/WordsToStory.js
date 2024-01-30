@@ -151,7 +151,7 @@ export default function WordsToStory() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const responseJson = await response.json();
-      return responseJson.candidates[0].content.parts[0].text;
+      return responseJson;
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
