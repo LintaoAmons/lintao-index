@@ -17,6 +17,7 @@ const Container = styled.div`
   }
 `;
 
+// TODO: remove the logic and api call here, call one lambda endpoint, and use that lambda function to call the AI endpoints
 export default function WordsToStory() {
   const [token, setToken] = useState("");
   const [openaiApiKey, setOpenaiApiKey] = useState("");
@@ -106,32 +107,6 @@ export default function WordsToStory() {
       return await fetchWords();
     }
     return ["You", "didn't", "provide", "any", "words"];
-  };
-
-  const generateArticleByCFWorder = async (prompt) => {
-    try {
-      const response = await fetch(
-        "https://llm-app-tight-mode-0227.lintao-amons.workers.dev/",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer bmWjLQmAUCOkfPV9UCBRKA45zENcOS_5qDy6q8Wn",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: prompt,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const responseJson = await response.json();
-      return responseJson[0].response.response;
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
   };
 
   const generateArticleByGemini = async (prompt) => {
@@ -235,6 +210,7 @@ export default function WordsToStory() {
             </p>
             <input
               type="text"
+              placeholder="sk-xxxxxxxxxxxxxxxxxx"
               value={openaiApiKey}
               onChange={(e) => setOpenaiApiKey(e.target.value)}
             />
@@ -265,6 +241,7 @@ export default function WordsToStory() {
             </p>
             <input
               type="text"
+              placeholder="NIS xxxxxxxxxxxxxxxxxxx"
               value={token}
               onChange={(e) => setToken(e.target.value)}
             />
@@ -292,6 +269,7 @@ export default function WordsToStory() {
             </p>
             <input
               type="text"
+              placeholder="you, didn't, provide, any, words"
               value={words}
               onChange={(e) => setWords(e.target.value)}
             />
