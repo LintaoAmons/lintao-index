@@ -240,7 +240,7 @@ export default function WordsToStory() {
                 margin: 0,
               }}
             >
-              (用CHATGPT获得更好地文章效果，可以不填)
+              (用 CHATGPT 获得更好地文章效果，如果不填，将使用免费的 Google Gemini)
             </p>
             <input
               type="text"
