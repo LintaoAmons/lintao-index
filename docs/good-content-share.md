@@ -8,3 +8,11 @@
 Due to this tradeoff, this approach is more of an “Open Source Analytics Stack in a box” than a traditional MDS. 
 
 It sacrifices infinite scale for **significant simplification** and the other benefits above.
+
+### [Interactive guide to flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/)
+
+The interactive guide to flexbox by Josh W. Comeau has significantly changed my understanding of the flex display.
+
+The logic of input (CSS properties) through an algorithm (specific to display) to output (render result) mirrors the structure found in other coding disciplines.
+
+The metaphor of the kabob made a particularly deep impression on me, effectively illustrating the concepts.
