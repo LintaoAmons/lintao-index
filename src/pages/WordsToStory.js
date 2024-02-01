@@ -23,6 +23,7 @@ export default function WordsToStory() {
   const [openaiApiKey, setOpenaiApiKey] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [wordMode, setWordMode] = useState("latest10");
   const [words, setWords] = useState("");
 
   function shuffleArray(array) {
@@ -32,18 +33,15 @@ export default function WordsToStory() {
     }
     return array;
   }
-
-  const fetchWords = async () => {
+  const fetchPage = async (pageNumber) => {
     try {
-      const response = await fetch(
-        "https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=0&page_size=50",
-        {
-          method: "GET", // The method is optional since GET is the default value
-          headers: {
-            Authorization: token, // Replace TOKEN with your actual token
-          },
+      const url = `https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=${pageNumber}&page_size=10`;
+      const response = await fetch(url, {
+        method: "GET", // The method is optional since GET is the default value
+        headers: {
+          Authorization: token, // Replace TOKEN with your actual token
         },
-      );
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -51,15 +49,34 @@ export default function WordsToStory() {
 
       const data = (await response.json()).data;
 
-      const words = data.map((it) => it.word);
+      return data.map((it) => it.word);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-      // Shuffle the array of words
-      const shuffledWords = shuffleArray(words);
+  const findLastPage = async (low, high) => {
+    let mid;
+    let result = [];
+    while (low <= high) {
+      mid = Math.floor((low + high) / 2);
+      const page = await fetchPage(mid);
 
-      // Pick the first ten words
-      const firstTenWords = shuffledWords.slice(0, 10);
+      if (page.length === 0) {
+        // No elements in the current page, go left
+        high = mid - 1;
+      } else {
+        // Elements found, this could be the last page with elements
+        result = page;
+        low = mid + 1; // Try to find if there's another page with elements to the right
+      }
+    }
+    return result; // This is the last page with elements
+  };
 
-      return firstTenWords;
+  const fetchWords = async () => {
+    try {
+      return await findLastPage(0, 10000);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -246,6 +263,32 @@ export default function WordsToStory() {
               onChange={(e) => setToken(e.target.value)}
             />
           </div>
+
+          {token && token != "" ? (
+            <div
+              style={{
+                display: "flex-col",
+              }}
+            >
+              <label
+                style={{
+                  display: "block",
+                }}
+              >
+                选词模式
+              </label>
+
+              <select onClick={(e) => setWordMode(e.target.value)}>
+                <option value="latest10">最近10个</option>
+                <option value="randomAmongLatest50">
+                  从最近50个生词中选10个
+                </option>
+                <option value="randomAmongLatest100">
+                  从最近100个生词中选10个
+                </option>
+              </select>
+            </div>
+          ) : undefined}
 
           <div
             style={{
