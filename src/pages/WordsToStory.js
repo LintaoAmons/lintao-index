@@ -80,6 +80,8 @@ export default function WordsToStory() {
       return shuffleArray(words.slice(-50)).slice(-10);
     } else if (wordMode == "randomAmongLatest100") {
       return shuffleArray(words.slice(-100)).slice(-10);
+    } else if (wordMode == "random") {
+      return shuffleArray(words).slice(10);
     } else {
       return words.slice(-10);
     }
@@ -310,10 +312,13 @@ export default function WordsToStory() {
                 >
                   <option value="latest10">最近10个</option>
                   <option value="randomAmongLatest50">
-                    从最近50个生词中选10个
+                    从最近50个生词中随机选10个
                   </option>
                   <option value="randomAmongLatest100">
-                    从最近100个生词中选10个
+                    从最近100个生词中随机选10个
+                  </option>
+                  <option value="random">
+                    随机选10个
                   </option>
                 </select>
               </div>
