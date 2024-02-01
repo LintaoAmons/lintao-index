@@ -57,16 +57,15 @@ export default function WordsToStory() {
     }
   };
 
-  const fetchLastTenWords = async () => {
-    const words = await fetchPage(Math.floor(wordsCount / 1000));
-    return words.slice(-10);
-  };
-
   const fetchWords = async () => {
-    try {
-      return await fetchLastTenWords();
-    } catch (error) {
-      console.error("Error fetching data: ", error);
+    const words = await fetchPage(Math.floor(wordsCount / 1000));
+    console.log(wordMode);
+    if (wordMode == "randomAmongLatest50") {
+      return shuffleArray(words.slice(-50)).slice(-10);
+    } else if (wordMode == "randomAmongLatest100") {
+      return shuffleArray(words.slice(-100)).slice(-10);
+    } else {
+      return words.slice(-10);
     }
   };
 
@@ -287,7 +286,12 @@ export default function WordsToStory() {
                   选词模式
                 </label>
 
-                <select onClick={(e) => setWordMode(e.target.value)}>
+                <select
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setWordMode(e.target.value);
+                  }}
+                >
                   <option value="latest10">最近10个</option>
                   <option value="randomAmongLatest50">
                     从最近50个生词中选10个
