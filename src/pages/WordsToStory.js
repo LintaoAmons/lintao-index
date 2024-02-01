@@ -24,6 +24,7 @@ export default function WordsToStory() {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [wordMode, setWordMode] = useState("latest10");
+  const [wordsCount, setWordsCount] = useState(0);
   const [words, setWords] = useState("");
 
   function shuffleArray(array) {
@@ -33,6 +34,7 @@ export default function WordsToStory() {
     }
     return array;
   }
+
   const fetchPage = async (pageNumber) => {
     try {
       const url = `https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=${pageNumber}&page_size=1000`;
@@ -56,7 +58,7 @@ export default function WordsToStory() {
   };
 
   const fetchLastTenWords = async () => {
-    const words = await fetchPage(0);
+    const words = await fetchPage(Math.floor(wordsCount / 1000));
     return words.slice(-10);
   };
 
@@ -251,29 +253,51 @@ export default function WordsToStory() {
           </div>
 
           {token && token != "" ? (
-            <div
-              style={{
-                display: "flex-col",
-              }}
-            >
-              <label
+            <>
+              <div
                 style={{
-                  display: "block",
+                  display: "flex-col",
                 }}
               >
-                选词模式
-              </label>
+                <label
+                  style={{
+                    display: "block",
+                  }}
+                >
+                  您的生词本单词总数(会根据您的单词总数来推断最近的单词)
+                </label>
 
-              <select onClick={(e) => setWordMode(e.target.value)}>
-                <option value="latest10">最近10个</option>
-                <option value="randomAmongLatest50">
-                  从最近50个生词中选10个
-                </option>
-                <option value="randomAmongLatest100">
-                  从最近100个生词中选10个
-                </option>
-              </select>
-            </div>
+                <input
+                  type="text"
+                  value={wordsCount}
+                  onChange={(e) => setWordsCount(e.target.value)}
+                />
+              </div>
+
+              <div
+                style={{
+                  display: "flex-col",
+                }}
+              >
+                <label
+                  style={{
+                    display: "block",
+                  }}
+                >
+                  选词模式
+                </label>
+
+                <select onClick={(e) => setWordMode(e.target.value)}>
+                  <option value="latest10">最近10个</option>
+                  <option value="randomAmongLatest50">
+                    从最近50个生词中选10个
+                  </option>
+                  <option value="randomAmongLatest100">
+                    从最近100个生词中选10个
+                  </option>
+                </select>
+              </div>
+            </>
           ) : undefined}
 
           <div
