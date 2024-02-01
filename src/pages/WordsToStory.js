@@ -35,7 +35,7 @@ export default function WordsToStory() {
   }
   const fetchPage = async (pageNumber) => {
     try {
-      const url = `https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=${pageNumber}&page_size=10`;
+      const url = `https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=${pageNumber}&page_size=1000`;
       const response = await fetch(url, {
         method: "GET", // The method is optional since GET is the default value
         headers: {
@@ -55,28 +55,14 @@ export default function WordsToStory() {
     }
   };
 
-  const findLastPage = async (low, high) => {
-    let mid;
-    let result = [];
-    while (low <= high) {
-      mid = Math.floor((low + high) / 2);
-      const page = await fetchPage(mid);
-
-      if (page.length === 0) {
-        // No elements in the current page, go left
-        high = mid - 1;
-      } else {
-        // Elements found, this could be the last page with elements
-        result = page;
-        low = mid + 1; // Try to find if there's another page with elements to the right
-      }
-    }
-    return result; // This is the last page with elements
+  const fetchLastTenWords = async () => {
+    const words = await fetchPage(0);
+    return words.slice(-10);
   };
 
   const fetchWords = async () => {
     try {
-      return await findLastPage(0, 10000);
+      return await fetchLastTenWords();
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
