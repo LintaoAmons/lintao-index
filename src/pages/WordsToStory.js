@@ -17,6 +17,7 @@ const Container = styled.div`
   }
 `;
 
+// TODO: save words into localStorage after first eudic api call
 // TODO: remove the logic and api call here, call one lambda endpoint, and use that lambda function to call the AI endpoints
 export default function WordsToStory() {
   const [token, setToken] = useState("");
@@ -36,12 +37,23 @@ export default function WordsToStory() {
   }
 
   const fetchPage = async (pageNumber) => {
+    // Define a unique key for each page
+    const storageKey = `pageData_${pageNumber}`;
+
     try {
+      // Check if data for this page is already in localStorage
+      const cachedData = localStorage.getItem(storageKey);
+      if (cachedData) {
+        console.log("Returning cached data for page:", pageNumber);
+        return JSON.parse(cachedData); // Parse and return the cached data
+      }
+
+      // If not cached, fetch data from the API
       const url = `https://api.frdic.com/api/open/v1/studylist/words/?language=en&page=${pageNumber}&page_size=1000`;
       const response = await fetch(url, {
-        method: "GET", // The method is optional since GET is the default value
+        method: "GET",
         headers: {
-          Authorization: token, // Replace TOKEN with your actual token
+          Authorization: token, // Make sure 'token' is accessible here
         },
       });
 
@@ -50,8 +62,12 @@ export default function WordsToStory() {
       }
 
       const data = (await response.json()).data;
+      const words = data.map((it) => it.word);
 
-      return data.map((it) => it.word);
+      // Store the fetched data in localStorage for future use
+      localStorage.setItem(storageKey, JSON.stringify(words));
+
+      return words;
     } catch (error) {
       console.error(error);
     }
