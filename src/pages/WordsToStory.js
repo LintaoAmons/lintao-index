@@ -267,6 +267,9 @@ export default function WordsToStory() {
               value={token}
               onChange={(e) => setToken(e.target.value)}
             />
+            <button onClick={() => localStorage.clear()}>
+              清除缓存（更新词典，以获取最新加入的单词）
+            </button>
           </div>
 
           {token && token != "" ? (
@@ -317,9 +320,7 @@ export default function WordsToStory() {
                   <option value="randomAmongLatest100">
                     从最近100个生词中随机选10个
                   </option>
-                  <option value="random">
-                    随机选10个
-                  </option>
+                  <option value="random">随机选10个</option>
                 </select>
               </div>
             </>
