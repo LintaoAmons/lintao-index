@@ -2,10 +2,14 @@
 
 ## 2024 Jan
 
+### [lua type coercion](https://www.codecademy.com/learn/learn-lua/modules/variables-and-data/cheatsheet)
+
+With simply and concise examples to show the functions of type coercion in lua
+
 ### [Modern Data Stack in a Box with DuckDB](https://duckdb.org/2022/10/12/modern-data-stack-in-a-box.html)
 > Real code: https://github.com/matsonj/nba-monte-carlo
 
-Due to this tradeoff, this approach is more of an “Open Source Analytics Stack in a box” than a traditional MDS. 
+Due to this trade-off, this approach is more of an “Open Source Analytics Stack in a box” than a traditional MDS. 
 
 It sacrifices infinite scale for **significant simplification** and the other benefits above.
 
