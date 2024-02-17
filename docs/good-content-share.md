@@ -2,6 +2,11 @@
 
 ## 2024 Jan
 
+### neovim extmark
+> https://jdhao.github.io/2021/09/09/nvim_use_virtual_text/
+
+A good article explain how to use extmark in neovim to set virtual text in neovim
+
 ### [lua type coercion](https://www.codecademy.com/learn/learn-lua/modules/variables-and-data/cheatsheet)
 
 With simply and concise examples to show the functions of type coercion in lua
