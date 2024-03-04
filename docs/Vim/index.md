@@ -13,11 +13,12 @@ tags: [vim]
 - My plugins
   - [scratch.nvim](https://github.com/LintaoAmons/scratch.nvim)
   - [easy-commands.nvim](https://github.com/LintaoAmons/easy-commands.nvim)
-  - [cd-project](https://github.com/LintaoAmons/cd-project.nvim)
-  - [print-config.nvim](https://github.com/LintaoAmons/print-config.nvim)
+  - [cd-project.nvim](https://github.com/LintaoAmons/cd-project.nvim)
+  - [bookmarks.nvim](https://github.com/LintaoAmons/bookmarks.nvim)
 - 基础
   - [Vim 正则](./vim-regex.md)
 - 配置
+  - [删除Lazyvim自带快捷键](/docs/Vim/remove-the-default-keybindings-of-lazyvim.md)
   - [Ideavim](./ideavim.md)
   - [Vscode jupyter notebook shortcuts](./vscode-jupyter-notebook-with-vim.md)
   - [LazyVim 插件配置原理](./Neovim插件配置原理与插件载入代码执行顺序.md)

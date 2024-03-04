@@ -93,6 +93,17 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
+            to: "https://lintao-index.pages.dev/wordsToStory",
+            label: "神奇故事背单词",
+            position: "left",
+          },
+          {
+            label: "X(Twitter)",
+            href: "https://twitter.com/Lintao000",
+            position: "right",
+          },
+
+          {
             href: "https://github.com/LintaoAmons",
             label: "GitHub",
             position: "right",

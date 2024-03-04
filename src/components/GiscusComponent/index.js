@@ -7,7 +7,7 @@ export default function GiscusComponent() {
   const { colorMode } = useColorMode();
   const { pathname } = useLocation();
 
-  return (
+  return pathname.includes(pathname) ? undefined : (
     <Giscus
       repo="LintaoAmons/lintao-index"
       repoId="R_kgDOKcy8Bw"
