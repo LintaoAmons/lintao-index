@@ -17,11 +17,17 @@ const Container = styled.div`
   }
 `;
 
+const storageKey = `dic_data`;
+const DIC_TOKEN = `dic_token`;
+const OPENAI_API_KEY = `openai_api_key`;
+
 // TODO: save words into localStorage after first eudic api call
 // TODO: remove the logic and api call here, call one lambda endpoint, and use that lambda function to call the AI endpoints
 export default function WordsToStory() {
-  const [token, setToken] = useState("");
-  const [openaiApiKey, setOpenaiApiKey] = useState("");
+  const [dicToken, setDicToken] = useState(localStorage.getItem(DIC_TOKEN));
+  const [openaiApiKey, setOpenaiApiKey] = useState(
+    localStorage.getItem(OPENAI_API_KEY),
+  );
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [wordMode, setWordMode] = useState("latest10");
@@ -38,7 +44,6 @@ export default function WordsToStory() {
 
   const fetchPage = async (pageNumber) => {
     // Define a unique key for each page
-    const storageKey = `pageData_${pageNumber}`;
 
     try {
       // Check if data for this page is already in localStorage
@@ -53,7 +58,7 @@ export default function WordsToStory() {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          Authorization: token, // Make sure 'token' is accessible here
+          Authorization: dicToken, // Make sure 'token' is accessible here
         },
       });
 
@@ -75,7 +80,6 @@ export default function WordsToStory() {
 
   const fetchWords = async () => {
     const words = await fetchPage(Math.floor(wordsCount / 1000));
-    console.log(wordMode);
     if (wordMode == "randomAmongLatest50") {
       return shuffleArray(words.slice(-50)).slice(-10);
     } else if (wordMode == "randomAmongLatest100") {
@@ -154,10 +158,12 @@ export default function WordsToStory() {
     }
   };
   // Usage
-  const handleClick = async () => {
+  const handleClick = async (event) => {
+    event.preventDefault();
+
     try {
       setLoading(true);
-      const words = await getWords(token);
+      const words = await getWords(dicToken);
       console.log(words);
 
       const prompt = `"Please create a story of approximately 100 words, ensuring it includes the following English words: ${words}. Each word must be highlighted in **bold** within the story. Additionally, provide the Chinese translations for these words, alongside a brief explanation of their meanings. Structure your response in the markdown format provided below(response the markdown only, don't add other explanation):
@@ -201,7 +207,8 @@ export default function WordsToStory() {
       description="Help you to get familiar with your words by stories"
     >
       <Container>
-        <div
+        <form
+          onSubmit={handleClick}
           className="sidebar"
           style={{
             display: "flex",
@@ -218,6 +225,7 @@ export default function WordsToStory() {
               style={{
                 display: "block",
               }}
+              for="openai_api_key"
             >
               OPENAI_API_KEY
             </label>
@@ -231,10 +239,14 @@ export default function WordsToStory() {
               Gemini)
             </p>
             <input
+              id="openai_api_key"
               type="text"
               placeholder="sk-xxxxxxxxxxxxxxxxxx"
               value={openaiApiKey}
-              onChange={(e) => setOpenaiApiKey(e.target.value)}
+              onChange={(e) => {
+                localStorage.setItem(OPENAI_API_KEY, e.target.value);
+                setOpenaiApiKey(e.target.value);
+              }}
             />
           </div>
 
@@ -247,6 +259,7 @@ export default function WordsToStory() {
               style={{
                 display: "block",
               }}
+              for="dic_token"
             >
               欧陆词典 Token (
               <a href="https://my.eudic.net/OpenAPI/Authorization">获取TOKEN</a>
@@ -264,15 +277,19 @@ export default function WordsToStory() {
             <input
               type="text"
               placeholder="NIS xxxxxxxxxxxxxxxxxxx"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
+              id="dic_token"
+              value={dicToken}
+              onChange={(e) => {
+                localStorage.setItem(DIC_TOKEN, e.target.value);
+                setDicToken(e.target.value);
+              }}
             />
             <button onClick={() => localStorage.clear()}>
               清除缓存（更新词典，以获取最新加入的单词）
             </button>
           </div>
 
-          {token && token != "" ? (
+          {dicToken && dicToken != "" ? (
             <>
               <div
                 style={{
@@ -359,11 +376,16 @@ export default function WordsToStory() {
               marginTop: "8px",
               fontSize: "large",
             }}
-            onClick={handleClick}
+            // onClick={handleClick}
           >
             点这里！生成故事
           </button>
-        </div>
+          <h4 style={{
+            marginTop: "5px"
+          }}>
+            注意： 代码开源，所有的Token和数据都在您本地储存
+          </h4>
+        </form>
 
         <div
           className="content"
