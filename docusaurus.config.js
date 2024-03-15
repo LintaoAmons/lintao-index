@@ -33,6 +33,14 @@ const config = {
     locales: ["en"],
   },
 
+  scripts: [
+    {
+      src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8219652153387121",
+      async: true,
+      crossorigin: "anonymous",
+    },
+  ],
+
   presets: [
     [
       "classic",
