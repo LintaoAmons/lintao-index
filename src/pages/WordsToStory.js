@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import Markdown from "react-markdown";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -202,206 +203,212 @@ export default function WordsToStory() {
   };
 
   return (
-    <Layout
-      title="Words to story"
-      description="Help you to get familiar with your words by stories"
-    >
-      <Container>
-        <form
-          onSubmit={handleClick}
-          className="sidebar"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flexBasis: "25vw",
-          }}
-        >
-          <div
+    <BrowserOnly>
+      <Layout
+        title="Words to story"
+        description="Help you to get familiar with your words by stories"
+      >
+        <Container>
+          <form
+            onSubmit={handleClick}
+            className="sidebar"
             style={{
-              display: "flex-col",
+              display: "flex",
+              flexDirection: "column",
+              flexBasis: "25vw",
             }}
           >
-            <label
+            <div
               style={{
-                display: "block",
-              }}
-              for="openai_api_key"
-            >
-              OPENAI_API_KEY
-            </label>
-            <p
-              style={{
-                fontSize: "x-small",
-                margin: 0,
+                display: "flex-col",
               }}
             >
-              (用 CHATGPT 获得更好地文章效果，如果不填，将使用免费的 Google
-              Gemini)
-            </p>
-            <input
-              id="openai_api_key"
-              type="text"
-              placeholder="sk-xxxxxxxxxxxxxxxxxx"
-              value={openaiApiKey}
-              onChange={(e) => {
-                localStorage.setItem(OPENAI_API_KEY, e.target.value);
-                setOpenaiApiKey(e.target.value);
-              }}
-            />
-          </div>
+              <label
+                style={{
+                  display: "block",
+                }}
+                for="openai_api_key"
+              >
+                OPENAI_API_KEY
+              </label>
+              <p
+                style={{
+                  fontSize: "x-small",
+                  margin: 0,
+                }}
+              >
+                (用 CHATGPT 获得更好地文章效果，如果不填，将使用免费的 Google
+                Gemini)
+              </p>
+              <input
+                id="openai_api_key"
+                type="text"
+                placeholder="sk-xxxxxxxxxxxxxxxxxx"
+                value={openaiApiKey}
+                onChange={(e) => {
+                  localStorage.setItem(OPENAI_API_KEY, e.target.value);
+                  setOpenaiApiKey(e.target.value);
+                }}
+              />
+            </div>
 
-          <div
-            style={{
-              display: "flex-col",
-            }}
-          >
-            <label
+            <div
               style={{
-                display: "block",
-              }}
-              for="dic_token"
-            >
-              欧陆词典 Token (
-              <a href="https://my.eudic.net/OpenAPI/Authorization">获取TOKEN</a>
-              )
-            </label>
-            <p
-              style={{
-                fontSize: "x-small",
-                margin: 0,
+                display: "flex-col",
               }}
             >
-              (从你的欧陆生词本获取单词,
-              可以不填。欧陆词典是一款非常好用的工具，内置生词本，其“每日英语听力”也非常好用，并且可以很方便添加单词到生词本)
-            </p>
-            <input
-              type="text"
-              placeholder="NIS xxxxxxxxxxxxxxxxxxx"
-              id="dic_token"
-              value={dicToken}
-              onChange={(e) => {
-                localStorage.setItem(DIC_TOKEN, e.target.value);
-                setDicToken(e.target.value);
+              <label
+                style={{
+                  display: "block",
+                }}
+                for="dic_token"
+              >
+                欧陆词典 Token (
+                <a href="https://my.eudic.net/OpenAPI/Authorization">
+                  获取TOKEN
+                </a>
+                )
+              </label>
+              <p
+                style={{
+                  fontSize: "x-small",
+                  margin: 0,
+                }}
+              >
+                (从你的欧陆生词本获取单词,
+                可以不填。欧陆词典是一款非常好用的工具，内置生词本，其“每日英语听力”也非常好用，并且可以很方便添加单词到生词本)
+              </p>
+              <input
+                type="text"
+                placeholder="NIS xxxxxxxxxxxxxxxxxxx"
+                id="dic_token"
+                value={dicToken}
+                onChange={(e) => {
+                  localStorage.setItem(DIC_TOKEN, e.target.value);
+                  setDicToken(e.target.value);
+                }}
+              />
+              <button onClick={() => localStorage.clear()}>
+                清除缓存（更新词典，以获取最新加入的单词）
+              </button>
+            </div>
+
+            {dicToken && dicToken != "" ? (
+              <>
+                <div
+                  style={{
+                    display: "flex-col",
+                  }}
+                >
+                  <label
+                    style={{
+                      display: "block",
+                    }}
+                  >
+                    您的生词本单词总数(会根据您的单词总数来推断最近的单词)
+                  </label>
+
+                  <input
+                    type="text"
+                    value={wordsCount}
+                    onChange={(e) => setWordsCount(e.target.value)}
+                  />
+                </div>
+
+                <div
+                  style={{
+                    display: "flex-col",
+                  }}
+                >
+                  <label
+                    style={{
+                      display: "block",
+                    }}
+                  >
+                    选词模式
+                  </label>
+
+                  <select
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setWordMode(e.target.value);
+                    }}
+                  >
+                    <option value="latest10">最近10个</option>
+                    <option value="randomAmongLatest50">
+                      从最近50个生词中随机选10个
+                    </option>
+                    <option value="randomAmongLatest100">
+                      从最近100个生词中随机选10个
+                    </option>
+                    <option value="random">随机选10个</option>
+                  </select>
+                </div>
+              </>
+            ) : undefined}
+
+            <div
+              style={{
+                display: "flex-col",
               }}
-            />
-            <button onClick={() => localStorage.clear()}>
-              清除缓存（更新词典，以获取最新加入的单词）
+            >
+              <label
+                style={{
+                  display: "block",
+                }}
+              >
+                手动输入你的单词
+              </label>
+              <p
+                style={{
+                  fontSize: "x-small",
+                  margin: 0,
+                }}
+              >
+                (你可以直接在这指定你想要的单词，输入后，将不再从欧陆词典拉取单词，可以不填)
+              </p>
+              <input
+                type="text"
+                placeholder="you, didn't, provide, any, words"
+                value={words}
+                onChange={(e) => setWords(e.target.value)}
+              />
+            </div>
+
+            <button
+              style={{
+                marginTop: "8px",
+                fontSize: "large",
+              }}
+              // onClick={handleClick}
+            >
+              点这里！生成故事
             </button>
-          </div>
-
-          {dicToken && dicToken != "" ? (
-            <>
-              <div
-                style={{
-                  display: "flex-col",
-                }}
-              >
-                <label
-                  style={{
-                    display: "block",
-                  }}
-                >
-                  您的生词本单词总数(会根据您的单词总数来推断最近的单词)
-                </label>
-
-                <input
-                  type="text"
-                  value={wordsCount}
-                  onChange={(e) => setWordsCount(e.target.value)}
-                />
-              </div>
-
-              <div
-                style={{
-                  display: "flex-col",
-                }}
-              >
-                <label
-                  style={{
-                    display: "block",
-                  }}
-                >
-                  选词模式
-                </label>
-
-                <select
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                    setWordMode(e.target.value);
-                  }}
-                >
-                  <option value="latest10">最近10个</option>
-                  <option value="randomAmongLatest50">
-                    从最近50个生词中随机选10个
-                  </option>
-                  <option value="randomAmongLatest100">
-                    从最近100个生词中随机选10个
-                  </option>
-                  <option value="random">随机选10个</option>
-                </select>
-              </div>
-            </>
-          ) : undefined}
+            <h4
+              style={{
+                marginTop: "5px",
+              }}
+            >
+              注意： 代码开源，所有的Token和数据都在您本地储存
+            </h4>
+          </form>
 
           <div
+            className="content"
             style={{
-              display: "flex-col",
+              flexGrowZ: 1,
+              margin: "5px",
+              overflowY: "scroll",
             }}
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-              手动输入你的单词
-            </label>
-            <p
-              style={{
-                fontSize: "x-small",
-                margin: 0,
-              }}
-            >
-              (你可以直接在这指定你想要的单词，输入后，将不再从欧陆词典拉取单词，可以不填)
-            </p>
-            <input
-              type="text"
-              placeholder="you, didn't, provide, any, words"
-              value={words}
-              onChange={(e) => setWords(e.target.value)}
-            />
+            {loading ? (
+              <Markdown># AI is thinking, please wait for a while</Markdown>
+            ) : (
+              <Markdown>{content}</Markdown>
+            )}
           </div>
-
-          <button
-            style={{
-              marginTop: "8px",
-              fontSize: "large",
-            }}
-            // onClick={handleClick}
-          >
-            点这里！生成故事
-          </button>
-          <h4 style={{
-            marginTop: "5px"
-          }}>
-            注意： 代码开源，所有的Token和数据都在您本地储存
-          </h4>
-        </form>
-
-        <div
-          className="content"
-          style={{
-            flexGrowZ: 1,
-            margin: "5px",
-            overflowY: "scroll",
-          }}
-        >
-          {loading ? (
-            <Markdown># AI is thinking, please wait for a while</Markdown>
-          ) : (
-            <Markdown>{content}</Markdown>
-          )}
-        </div>
-      </Container>
-    </Layout>
+        </Container>
+      </Layout>
+    </BrowserOnly>
   );
 }
