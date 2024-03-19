@@ -1,27 +1,38 @@
 ---
 sidebar_position: 1
+title: Introduction
 ---
 
-## 👻 TOC
+## 👻 Table Of Content
 > 👷UNDER CONSTRUCTION
 
-- [Blog](https://lintao-index.pages.dev/blog)
-- [Vim](./Vim/index.md)
-- [Show me the code](./show-me-the-code.md)
-- [Good content sharing](./good-content-share.md)
-- [Words to story](https://lintao-index.pages.dev/wordsToStory)
-- DevOps
-  - [Ansible](./DevOps/Ansible/index.md)
-  - [K8s](./DevOps/K8s/index.md)
-- Coding
-  - [Java](./Coding/Java/index.md)
-  - [Javascript & Typescript](./Coding/js-ts/index.md)
-  - [python](./Coding/python/index.md)
-  - [Refactor](/docs/category/refactor)
-  - [config-files](/docs/category/config-files)
-- Editors & Tools
-  - [HammerSpoon](./Terminal/HammerSpoon/intro.md)
-  - [Warpd](./Editor-and-Tools/warpd.md)
+### [Vim](./Vim/intro.md)
+
+- [从 LazyVim 源码理解最佳实践](/docs/Vim/config-best-practices.md)
+- [Ideavim 配置](/docs/Vim/ideavim.md)
+
+### [Show me the code](./show-me-the-code.md)
+### [Good content sharing](./good-content-share.md)
+### [神奇故事记单词](https://lintao-index.pages.dev/wordsToStory)
+### DevOps
+- [Ansible](./DevOps/Ansible/index.md)
+- [K8s](./DevOps/K8s/index.md)
+
+### Coding
+
+- [Java](./Coding/Java/index.md)
+- [Javascript & Typescript](./Coding/js-ts/index.md)
+- [python](./Coding/python/index.md)
+- [Refactor](/docs/category/refactor)
+- [config-files](/docs/category/config-files)
+
+### Tools
+- [HammerSpoon](./Terminal/HammerSpoon/intro.md)
+- [Warpd](./Editor-and-Tools/warpd.md)
+
+### 碎碎念 && [Blog](https://lintao-index.pages.dev/blog)
+
+- [买房Checklist](/docs/Mumble/买房Checklist.md)
 
 
 ## 📫 How to reach me
