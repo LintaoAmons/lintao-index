@@ -9,7 +9,7 @@ sidebar_position: 30
 ### 算法学习
 > https://neetcode.io/roadmap
 
-第一次感觉可以一直刷下去的路径
+转行算法小白，第一次感觉可以一直刷下去的路径
 
 ## 2024 Jan
 
