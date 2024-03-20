@@ -1,3 +1,7 @@
+---
+title: 好东西分享
+sidebar_position: 30
+---
 # Good content share
 
 ## 2024 Jan

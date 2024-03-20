@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 20
 sidebar_label: "Show me the code"
 slug: "show-me-the-code"
 ---
