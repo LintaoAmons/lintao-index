@@ -1,5 +1,6 @@
 {
-    "position": 40,
+    "position": 100,
+    "label": "语言配置",
     "link": {
         "type": "generated-index"
     }

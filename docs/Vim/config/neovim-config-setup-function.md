@@ -1,8 +1,8 @@
 ---
-tags: ["vim"]
+sidebar_position: 40
 ---
 
-# LazyVim 插件配置原理
+# LazyVim 插件配置原理与插件载入代码执行顺序
 
 > 代码可以在 https://github.com/LintaoAmons/print-config.nvim 找到
 
@@ -23,7 +23,7 @@ print-config.nvim on  main
 4 directories, 4 files
 ```
 
-当插件开始加载时，位于插件repo下的 `plugin` 文件下的脚本首先被执行，在本示例中，这个文件既 `plugin/print_config_plugin.lua` 
+当插件开始加载时，位于插件repo下的 `plugin` 文件下的脚本首先被执行，在本示例中，这个文件就是 `plugin/print_config_plugin.lua` 
 
 ```lua title=plugin/print_config_plugin.lua
 vim.print("This is the start point(can be consider as MainFunction/EntryPoint) when loading a plugin to neovim")

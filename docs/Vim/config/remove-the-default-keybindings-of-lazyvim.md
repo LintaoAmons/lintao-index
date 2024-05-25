@@ -1,4 +1,14 @@
+---
+sidebar_position: 20
+---
+
 # 删掉Lazyvim自带的快捷键
+
+> [!WARNING]
+>
+> **最新方法，自己 fork 一个 [Lazyvim](https://github.com/LintaoAmons/LazyVim)，把他里面的你不爽的快捷键全干掉!**
+
+---
 
 Lazyvim 自带的快捷键有时候不符合我的心意，直接绑定新的快捷键不一定会达到你想要
 的效果，下面是我总结的如果disable默认快捷键的方法
