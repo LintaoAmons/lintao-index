@@ -106,12 +106,6 @@ const config = {
             position: "left",
           },
           {
-            label: "X(Twitter)",
-            href: "https://twitter.com/Lintao000",
-            position: "right",
-          },
-
-          {
             href: "https://github.com/LintaoAmons",
             label: "GitHub",
             position: "right",
