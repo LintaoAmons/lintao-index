@@ -1,5 +1,5 @@
 ---
-sidebar_position: 20
+sidebar_position: 120
 ---
 
 # 删掉Lazyvim自带的快捷键
