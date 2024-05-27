@@ -10,7 +10,7 @@ title: Plugin manager
     - opts: opts 的 table 将自动被作为参数传入对应插件的 setup 函数，并调用
     - keys: 配置快捷键，一般是结合插件提供的API来配置快捷键
     - dir: 当你想使用本地插件（通常可能是你自己还在开发中的插件），可以通过指定目录来加载这个插件
-    - init: TODO
+    - init: init 函数总是会在刚开始的时候就执行 (这个刚开始是neovim刚开始还是插件加载刚开始啊...)
 - 版本和依赖
     - tag: 声明 github 的 tag，使插件版本固定
     - branch： 声明 github 的 分支，是插件使用特定分支
