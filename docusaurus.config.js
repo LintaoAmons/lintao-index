@@ -9,6 +9,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "林饕 | Lintao",
+  staticDirectories: ["static"],
   favicon: "img/logo.svg",
 
   // Set the production url of your site here

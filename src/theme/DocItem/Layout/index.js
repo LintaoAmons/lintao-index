@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import GiscusComponent from "@site/src/components/GiscusComponent";
+import Badges from "@site/src/components/Badges";
 import { useWindowSize } from "@docusaurus/theme-common";
 import { useDoc } from "@docusaurus/theme-common/internal";
 import DocItemPaginator from "@theme/DocItem/Paginator";
@@ -41,6 +42,7 @@ export default function DocItemLayout({ children }) {
           <article>
             <DocBreadcrumbs />
             <DocVersionBadge />
+            <Badges />
             {docTOC.mobile}
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />

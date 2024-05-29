@@ -1,10 +1,10 @@
 ---
 sidebar_position: 20
 sidebar_label: "Show me the code"
-slug: "show-me-the-code"
+title: Show me the code
 ---
 
-# Show me the code
+# Talk is cheap, show me the code
 
 ## [Undercontrol-go](https://github.com/LintaoAmons/undercontrol-go)
 > ![TechStack](https://skillicons.dev/icons?i=go,sqlite,docker)
