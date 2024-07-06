@@ -1,3 +1,8 @@
+---
+id: c1004-bash-basic
+title: c1004-bash-basic
+---
+
 # Bash/Shell basic
 
 - `cd`：更改到不同的目录。
