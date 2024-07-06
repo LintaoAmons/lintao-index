@@ -11,8 +11,6 @@
   * [4.3. `help`命令](#4.3.-`help`命令)
 * [5. CLI描述语法约定](#5.-cli描述语法约定)
 
-<div style="page-break-after: always;"></div>
-
 ---
 ## 1. 引言
 命令行界面（CLI: COMMAND LINE INTERFACE） 是一种通过命令行处理用户交互的应用程序。
@@ -41,7 +39,6 @@ CLI相对于GUI的一个主要优势是它们更易于*自动化*
 
 当然，这个只是大多数的设计，遵循这个规则，特别是现在新的 cli 工具，基本 follow 这个规则。比如 `k8s` 的 `kubectl`. 也会有例外，因为这个只是一个惯例，具体是什么样的规则，全看命令开发者的具体实现代码。
 
-<div style="page-break-after: always;"></div>
 
 ---
 ## 2. 参数 arguments
@@ -107,7 +104,6 @@ CLI中的参数允许用户向应用程序发送数据，有时在命令上下�
 - `> git push --force`
 - `> npm install --save-dev`
 
-<div style="page-break-after: always;"></div>
 
 ---
 
@@ -144,7 +140,6 @@ CLI中的参数允许用户向应用程序发送数据，有时在命令上下�
 例如，当我们使用help命令时，dotnet CLI和npm CLI都会打开浏览器并将你重定向到命令的完整文档：
 - `npm help <command>`
 
-<div style="page-break-after: always;"></div>
 
 ---
 

@@ -15,7 +15,6 @@
     * [10. 撤销](#10.-撤销)
 
 
-<div style="page-break-after: always;"></div>
 
 # Git
 
@@ -43,7 +42,6 @@ Git是一种分布式版本控制系统，最初由Linus Torvalds创造，他也
 
 Git是每个软件开发人员必备的工具之一。掌握它，将对你的编程生涯有巨大的帮助。我们将在接下来的课程中深入学习Git的使用方法。期待你们能用它来管理自己的项目！
 
-<div style="page-break-after: always;"></div>
 ---
 
 ## Git常见工作流程
@@ -93,9 +91,7 @@ Git是每个软件开发人员必备的工具之一。掌握它，将对你的�
    git push origin master
    ```
 
-<div style="page-break-after: always;"></div>
 ---
-
 ## Cheat sheet
 
 ### 1. 配置
