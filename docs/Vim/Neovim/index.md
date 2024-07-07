@@ -24,7 +24,7 @@ sidebar_position: 10
 </a>
 
 ### 配置结构
-> 去这里看看我的 [配置](https://github.com/LintaoAmons/CoolStuffes/tree/main/lazyvim/.config/nvim)
+> 去这里看看我的 [配置](https://github.com/LintaoAmons/CoolStuffes/tree/main/nvim/.config/nvim)
 
 ```sh
 .
