@@ -1,7 +1,9 @@
 ---
 sidebar_position: 20
-title: Plugin manager
 ---
+
+# init.lua | Plugin Manager
+> lazy.vim 
 
 ## 常用的插件配置块的参数项
 
@@ -19,7 +21,6 @@ title: Plugin manager
     - lazy： 就是说这个要懒加载
     - event：在特殊的事件发生时加载插件，常用的有 "VeryLazy"
     - ft: 在特定的文件类型时加载插件
-
 
 ```lua
 return {
