@@ -5,11 +5,14 @@ sidebar_position: 20
 # init.lua | Plugin Manager
 > lazy.vim 
 
+直接用 [lazy.vim](https://www.lazyvim.org/) 就好了，不用想咯
+
 ## 常用的插件配置块的参数项
 
 - 配置
-    - config: 其值为一个函数,通常会在这里手动调用插件的setup函数，有时也会同时进行一些其他的操作
     - opts: opts 的 table 将自动被作为参数传入对应插件的 setup 函数，并调用
+    - config: 其值为一个函数,通常会在这里手动调用插件的setup函数，有时也会同时进行一些其他的操作
+    - opts 和 config 配合能够实现一个插件在多个地方进行配置，下面有实际的例子
     - keys: 配置快捷键，一般是结合插件提供的API来配置快捷键
     - dir: 当你想使用本地插件（通常可能是你自己还在开发中的插件），可以通过指定目录来加载这个插件
     - init: init 函数总是会在刚开始的时候就执行 (这个刚开始是neovim刚开始还是插件加载刚开始啊...)
@@ -107,3 +110,68 @@ return {
   { "folke/noice.nvim", dev = true },
 }
 ```
+
+## opts 和 config 配合封装language配置包
+
+在我的配置中，你可能发现有 `plugin/lang-core/` 以及 `plugin/lang/` 两个文件夹
+
+- lang-core 放了所有语言通用的基础配置，包括语法高亮的 `treesitter`, 自动补全的基础 `cmp`, 格式化 `formating` 的 `conform`
+
+- lang 文件夹下是各个语言高内聚的配置
+
+下面以格式化的配置为例，讲一讲 opts 和 config 两个配置项的用法
+
+```lua title=plugin/lang/terraform.lua
+return {
+  {
+    "stevearc/conform.nvim", -- 配置 conform.nvim, formatting的插件
+    opts = {
+      formatters_by_ft = {
+        tf = { "terraform_fmt" },
+        terraform = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
+      },
+    },
+  },
+}
+```
+
+```lua title=plugin/lang-core/formatting.lua
+return {
+  "stevearc/conform.nvim",
+
+  opts = {
+    formatters_by_ft = {
+      lua = { "stylua" },
+      -- Conform will run multiple formatters sequentially
+      python = { "isort", "black" },
+      xml = { "xmlformat" },
+    },
+  },
+  config = function(_, opts)
+    vim.print(opts) -- 注意这里的 print
+    require("conform").setup(opts)
+  end,
+}
+```
+
+你会发现最后打印出来的结果是两个文件 opts merge 过后的结果
+最后这个 opts 会被用于插件的 setup 函数，完成最终的配置
+
+```lua title=output
+{
+  formatters_by_ft = {
+    json = { "jq" },
+    lua = { "stylua" },
+    python = { "isort", "black" },
+    terraform = { "terraform_fmt" },
+    ["terraform-vars"] = { "terraform_fmt" },
+    tf = { "terraform_fmt" },
+    xml = { "xmlformat" }
+  }
+}
+```
+
+在我写得插件中，最后 setup 的 config 会写道一个全局变量上 `vim.g.xxx_config`, 这样你就可以在nvim runtime去修改插件的配置
+从而实现不用重启 nvim 而修改插件配置并生效的效果。
+
