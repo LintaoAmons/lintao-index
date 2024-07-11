@@ -46,7 +46,7 @@ sidebar_position: 10
 
 ### 详细讲解
 
-- [init.lua](./plugin-manager.md)
+- [init.lua](./config/init.md)
 
 <details>
 <summary>点击展开详细结构</summary>

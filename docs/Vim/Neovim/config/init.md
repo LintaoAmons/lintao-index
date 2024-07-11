@@ -1,13 +1,18 @@
 ---
-sidebar_position: 20
+sidebar_position: 1
+id: init
 ---
 
 # init.lua | Plugin Manager
 > lazy.vim 
 
-直接用 [lazy.vim](https://www.lazyvim.org/) 就好了，不用想咯
+我的配置有一个理念是`使用显式的配置`, 这样配合上lsp就能很方便地追根溯源，找到定义处和引用处。
 
-## 常用的插件配置块的参数项
+在 `init.lua` 就是整个配置文件的入口，main方法，树的根，从这里出发最终就能一步步找到各个具体的细节的配置
+
+这里也声明了plugin manager，直接用 [lazy.vim](https://www.lazyvim.org/) 就好了，不用想咯
+
+## lazy.vim 常用的插件配置块的参数项
 
 - 配置
     - opts: opts 的 table 将自动被作为参数传入对应插件的 setup 函数，并调用
@@ -121,7 +126,7 @@ return {
 
 下面以格式化的配置为例，讲一讲 opts 和 config 两个配置项的用法
 
-```lua title=plugin/lang/terraform.lua
+```lua title="plugin/lang/terraform.lua"
 return {
   {
     "stevearc/conform.nvim", -- 配置 conform.nvim, formatting的插件
@@ -136,7 +141,7 @@ return {
 }
 ```
 
-```lua title=plugin/lang-core/formatting.lua
+```lua title="plugin/lang-core/formatting.lua"
 return {
   "stevearc/conform.nvim",
 
@@ -158,7 +163,7 @@ return {
 你会发现最后打印出来的结果是两个文件 opts merge 过后的结果
 最后这个 opts 会被用于插件的 setup 函数，完成最终的配置
 
-```lua title=output
+```lua title="output"
 {
   formatters_by_ft = {
     json = { "jq" },
