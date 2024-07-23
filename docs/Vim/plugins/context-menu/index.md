@@ -1,6 +1,6 @@
 # Context-Menu.nvim
 > check the [github](https://github.com/LintaoAmons/context-menu.nvim) repo
->
+> 
 > ![](https://img.shields.io/github/stars/LintaoAmons/context-menu.nvim?style=social)
 
 ## Philosophy
@@ -30,3 +30,8 @@
 > [config ref](https://github.com/LintaoAmons/CoolStuffes/blob/0f69158b06fdae18a9da684f3cff756e72d9e958/nvim/.config/nvim/lua/plugins/lang/markdown.lua#L4)
 
 ![markdown](./assets/cm-markdown.gif)
+
+### HTTP
+
+![http](./assets/cm-http.gif)
+
