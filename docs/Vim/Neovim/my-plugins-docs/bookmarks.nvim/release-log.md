@@ -27,7 +27,7 @@ require("bookmarks").setup({
 
 </details>
 
-### backup DB json file
+### Backup DB json file
 
 In case of data lose, we init this backup function
 
