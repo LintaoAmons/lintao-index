@@ -1,7 +1,8 @@
-# Context-Menu.nvim
-> check the [github](https://github.com/LintaoAmons/context-menu.nvim) repo
-> 
-> ![](https://img.shields.io/github/stars/LintaoAmons/context-menu.nvim?style=social)
+---
+title: context-menu.nvim
+---
+
+# Context-Menu.nvim <a href="https://github.com/LintaoAmons/context-menu.nvim"> ![](https://img.shields.io/github/stars/LintaoAmons/context-menu.nvim?style=social) </a> 
 
 ## Philosophy
 
