@@ -23,6 +23,23 @@ sidebar_position: 10
 <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white" />
 </a>
 
+### 使用指南
+
+#### 运行时修改配置立即生效
+
+配置的代码块尽力做到小块代码可直接选中并source生效，
+从而做到能够在运行时微调配置并直接生效获得反馈，
+感觉达到期望直接保存即可
+
+进入配置代码 --> 修改配置 --> Source 修改 --> 体验效果 --> 达到效果
+
+由于修改是发生在 配置代码 里的，所以全程不用退出 vim 就能达到效果，并且下次进入 vim 配置的改动依旧生效
+
+- Example: 修改快捷键. 非常常见的操作，但是我之前需要每次都重新启动，尝试修改后的快捷键是不是符合自己的心意
+
+![](./_assets/index-config-change.gif)
+
+
 ### 配置结构
 > 去这里看看我的 [配置](https://github.com/LintaoAmons/CoolStuffes/tree/main/nvim/.config/nvim)
 
