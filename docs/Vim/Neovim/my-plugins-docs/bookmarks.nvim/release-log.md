@@ -1,5 +1,45 @@
 # Release log
 
+## v1.2.0-treeview
+
+![treeview](./assets/b-tree.gif)
+
+<details>
+<summary>Config</summary>
+
+```lua
+require("bookmarks").setup({
+  -- highlight-next-line
+  treeview = {
+    bookmark_format = function(bookmark)
+      return bookmark.name
+        .. " ["
+        .. bookmark.location.project_name
+        .. "] "
+        .. bookmark.location.relative_path
+        .. " : "
+        .. bookmark.content
+    end,
+    keymap = {
+      quit = { "q", "<ESC>" },
+      refresh = "R",
+      create_folder = "a",
+      tree_cut = "x",
+      tree_paste = "p",
+      collapse = "o",
+      delete = "d",
+      active = "s",
+      copy = "c",
+    },
+  },
+  -- ...
+})
+```
+
+</details>
+
+
+
 ## v1.1.0-line-highlight-and-db-backup
 
 ### Line Hightlight
