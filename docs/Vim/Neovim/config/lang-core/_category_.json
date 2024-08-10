@@ -1,5 +1,5 @@
 {
-  "position": 80,
-  "label": "Neovim",
+  "position": 10,
+  "label": "lang-core",
   "link": { "type": "doc", "id": "index" }
 }

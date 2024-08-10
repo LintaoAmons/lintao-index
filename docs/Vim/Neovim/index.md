@@ -63,7 +63,8 @@ sidebar_position: 10
 
 ### 详细讲解
 
-- [init.lua](./config/init.md)
+- [init.lua](./config/init.md) 配置入口以及插件管理
+- [lang-core](./config/lang-core/index.md) 各个编程语言共享的基础配置
 
 <details>
 <summary>点击展开详细结构</summary>

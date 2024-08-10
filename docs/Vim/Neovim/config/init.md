@@ -4,7 +4,6 @@ id: init
 ---
 
 # init.lua | Plugin Manager
-> lazy.vim 
 
 我的配置有一个理念是`使用显式的配置`, 这样配合上lsp就能很方便地追根溯源，找到定义处和引用处。
 
