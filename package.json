@@ -20,16 +20,13 @@
     "@easyops-cn/docusaurus-search-local": "^0.40.1",
     "@giscus/react": "^2.4.0",
     "@mdx-js/react": "^3.0.0",
-    "autoprefixer": "^10.4.20",
     "clsx": "^2.0.0",
-    "postcss": "^8.4.41",
     "prism-react-renderer": "^2.3.0",
     "raw-loader": "^4.0.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-markdown": "^9.0.1",
-    "styled-components": "^6.1.8",
-    "tailwindcss": "^3.4.9"
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.0.1",
